@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Character } from './character';
+import { CharacterService} from "../character/character.service";
 
 @Component({
   selector: 'swc-character-list',
@@ -7,8 +8,8 @@ import { Character } from './character';
   styleUrls: ['./character-list.component.css']
 })
 
-export class CharacterListComponent implements OnInit {
-  hideDetails: true;
+export class CharacterListComponent implements OnInit{
+  hideDetails: boolean;
   charArray: Array<Character> = [
     {
       "id": "luke-skywalker",
@@ -300,9 +301,16 @@ export class CharacterListComponent implements OnInit {
     }
   ];
 
-  constructor() {
+  characterFilter: string = "";
+
+  constructor(private CharacterService: CharacterService) {
+
   }
 
   ngOnInit() {
+  }
+
+  toggleDetails(): void{
+    this.hideDetails = !this.hideDetails;
   }
 }

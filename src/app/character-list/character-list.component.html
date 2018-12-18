@@ -6,18 +6,19 @@
   </mat-toolbar>
 
   <mat-list-item>
-    <button mat-stroked-button>
-      <span>Show or Hide Details</span>
+    <button mat-stroked-button (click)="toggleDetails()">
+      {{ hideDetails ? 'Show' : 'Hide '}} Details
     </button>
   </mat-list-item>
 
   <mat-list>
-    <mat-list-item *ngFor="let character of charArray">
-      <img mat-list-avatar src="{{ character.avatar }}" />
+    <mat-list-item *ngFor="let character of charArray | character : characterFilter">
+      <img mat-list-avatar src="{{ character.avatar }}" [alt]="character.name | lowercase"/>
       <h3 mat-line>{{ character.name }}</h3>
       <div mat-line *ngIf="!hideDetails">
         <span>Gender: {{ character.gender }}, </span>
         <span>Species: {{ character.species }}</span>
+        <swc-force-component [forceStrength]="character.force"></swc-force-component>
       </div>
     </mat-list-item>
   </mat-list>

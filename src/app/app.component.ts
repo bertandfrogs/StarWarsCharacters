@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  // toggleDetails(): void;
   // interpolation would go here
   // for example defining a title like
   // title: "sdsds"
